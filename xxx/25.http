@@ -1,0 +1,25 @@
+
+########################
+
+POST http://localhost:8081/v1/auth/join
+Accept: application/json
+Accept-Language: ru
+Content-Type: application/json
+
+{
+"email": "new-userapp.test",
+"password": ""
+}
+
+
+###
+
+GET http://localhost:8081
+Accept: application/json
+
+###
+
+GET http://localhost:8081/not-fond
+Accept: application/json
+
+####
