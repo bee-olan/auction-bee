@@ -31,12 +31,12 @@ docker-build:
 	docker-compose build
 
 api-clear:
-	docker run --rm -v /home/olan/bee-auction/api:/app -w /app alpine sh -c 'rm -rf var/cache/* var/log/* var/test/*'
+	docker run --rm -v /home/olan/auction-bee/api:/app -w /app alpine sh -c 'rm -rf var/cache/* var/log/* var/test/*'
 
 api-init: api-permissions api-composer-install api-wait-db api-migrations api-fixtures
 
 api-permissions:
-	docker run --rm -v /home/olan/bee-auction/api:/app -w /app alpine chmod 777 var/cache var/log var/test
+	docker run --rm -v /home/olan/auction-bee/api:/app -w /app alpine chmod 777 var/cache var/log var/test
 
 api-composer-install:
 	docker-compose run --rm api-php-cli composer install
@@ -79,7 +79,7 @@ api-test-functional-coverage:
 	docker-compose run --rm api-php-cli composer test-coverage -- --testsuite=functional
 
 frontend-clear:
-	docker run --rm -v /home/olan/bee-auction/frontend:/app -w /app alpine sh -c 'rm -rf .ready build'
+	docker run --rm -v /home/olan/auction-bee/frontend:/app -w /app alpine sh -c 'rm -rf .ready build'
 
 frontend-init: frontend-yarn-install frontend-ready
 
@@ -87,7 +87,7 @@ frontend-yarn-install:
 	docker-compose run --rm frontend-node-cli yarn install
 
 frontend-ready:
-	docker run --rm -v /home/olan/bee-auction/frontend:/app -w /app alpine touch .ready
+	docker run --rm -v /home/olan/auction-bee/frontend:/app -w /app alpine touch .ready
 
 frontend-lint:
 	docker-compose run --rm frontend-node-cli yarn eslint
@@ -106,7 +106,7 @@ frontend-test-watch:
 	docker-compose run --rm frontend-node-cli yarn test
 
 cucumber-clear:
-	docker run --rm -v /home/olan/bee-auction/cucumber:/app -w /app alpine sh -c 'rm -rf var/*'
+	docker run --rm -v /home/olan/auction-bee/cucumber:/app -w /app alpine sh -c 'rm -rf var/*'
 
 cucumber-init: cucumber-yarn-install
 
